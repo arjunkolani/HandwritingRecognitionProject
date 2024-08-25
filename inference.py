@@ -7,7 +7,7 @@ from tensorflow import keras
 
 import cv2
 import numpy as np
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 import tensorflow as tf
 
 from wordSegmentation import extractWords
@@ -48,7 +48,7 @@ def decode_predictions(pred):
     output_text = []
     for res in results:
         res = tf.gather(res, tf.where(tf.math.not_equal(res, -1)))
-        res = tf.strings.reduce_join(num_to_char(res)).numpy().decode("utf-8")
+        res = tf.strings.reduce_join(num_to_char2(res)).numpy().decode("utf-8")
         output_text.append(res)
     return output_text
 
@@ -78,6 +78,7 @@ def convert_text(image_path, model_path):
     return " ".join(pred_texts)
 
 
+# This is the mapping for the 30 epoch model
 num_to_char = StringLookup(
     vocabulary=['[UNK]',
  'S',
@@ -158,6 +159,12 @@ num_to_char = StringLookup(
  'V',
  '9',
  ':'], mask_token=None, invert=True
+)
+
+# This is the mapping for the 100 epoch model
+num_to_char2 = StringLookup(
+    vocabulary=['[UNK]', 's', '3', 'Y', 'G', 'j', 'O', '6', ')', 'p', '-', 'I', 'F', 'P', 'd', 'Q', '!', 'M', 'o', 'T', '+', '(', '4', '&', 'f', 'h', '1', 'e', 'K', '#', 'z', 'X', 'c', 'R', 'E', 'L', '9', '2', 'i', '7', '*', 'B', '/', 'Z', 'W', '8', ';', 'r', 'N', "'", 'U', 'q', ',', 'a', '5', 'J', 'n', 'H', ':', 'C', '"', 'k', '.', 'v', 'S', 'V', 'y', 'l', 'x', 'D', '?', 'g', 'w', 'u', '0', 'b', 'A', 'm', 't'],
+    mask_token=None, invert=True
 )
 
 """
