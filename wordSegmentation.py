@@ -78,13 +78,14 @@ def extractWords(image_path):
     """
     return words
 
-
+"""
 test_path = "data/sample1.png"
 
 extracted_words = extractWords(test_path)
 for extracted_word in extracted_words[:10]:
     plt.imshow(extracted_word)
     plt.show()
+"""
 
 """
 for line in lines:
