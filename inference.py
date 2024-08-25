@@ -74,7 +74,8 @@ def convert_text(image_path, model_path):
     preds = pred_model.predict(tensor_images)
     pred_texts = decode_predictions(preds)
 
-    return pred_texts
+    # returns a string with words - elements in the list - spaced out
+    return " ".join(pred_texts)
 
 
 num_to_char = StringLookup(
@@ -158,6 +159,7 @@ num_to_char = StringLookup(
  '9',
  ':'], mask_token=None, invert=True
 )
+
 """
 test_path = "data/sample1.png"
 extracted_words = extractWords(test_path)
