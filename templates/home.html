@@ -3,18 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
+    <!-- This link is for upload icon -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+    <link href="{{url_for('static', filename='style.css')}}" rel="stylesheet">
 
 </head>
 <body>
     <h1>Home</h1>
 
-    <form method="POST" enctype="multipart/form-data">
-        {{form.hidden_tag()}}
-        {{form.file()}}
-        {{form.submit()}}
-    </form>
+    <div class="box">
+        <form method="POST" enctype="multipart/form-data">
+            <input type="file" name="image" id="uploadImage">
+            <label for="uploadImage"><i class="fa-solid fa-upload"></i> Upload Image</label>
 
-    <p>{{output_text}}</p>
+            <button type="submit" id="convertButton">Submit</button>
+        </form>
+        {% if status=="Converted" %}
+            <figure class="image-container">
+                <img id="segmented-image" src="{{url_for('static', filename='files/segmented_image.png')}}">
+            </figure>
+        {% endif %}
+        <figure class="image-container">
+            <img id="chosen-image">
+            <figcaption id="file-name"></figcaption>
+        </figure>
 
+
+    </div>
+
+    <div class="box right">
+        {{output_text}}
+    </div>
+
+    <script src="{{url_for('static', filename='script.js')}}"></script>
 </body>
+
 </html>

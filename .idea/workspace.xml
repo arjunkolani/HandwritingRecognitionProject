@@ -4,9 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e8d9551f-a921-42b6-b098-8184a7295f77" name="Changes" comment="Changed inferencing to the 100 epoch model and added its string lookup table so conversion is more accurate than the 30 epoch model">
+    <list default="true" id="e8d9551f-a921-42b6-b098-8184a7295f77" name="Changes" comment="Added basic input validation for uploading file so it only accepts certain file types but will need to make error mesages visible for user later.">
+      <change afterPath="$PROJECT_DIR$/static/script.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wordSegmentation.py" beforeDir="false" afterPath="$PROJECT_DIR$/wordSegmentation.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,9 +20,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Python Script" />
         <option value="HTML File" />
         <option value="JavaScript File" />
-        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -56,7 +60,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/arjun/OneDrive/Documents/Lower 6th CS/CourseworkProject/htr_models&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/arjun/OneDrive/Documents/Lower 6th CS/CourseworkProject/templates&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -67,11 +71,13 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\arjun\OneDrive\Documents\Lower 6th CS\CourseworkProject\templates" />
       <recent name="C:\Users\arjun\OneDrive\Documents\Lower 6th CS\CourseworkProject\htr_models" />
       <recent name="C:\Users\arjun\OneDrive\Documents\Lower 6th CS\CourseworkProject\data" />
       <recent name="C:\Users\arjun\OneDrive\Documents\Lower 6th CS\CourseworkProject" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\arjun\OneDrive\Documents\Lower 6th CS\CourseworkProject\static" />
       <recent name="C:\Users\arjun\OneDrive\Documents\Lower 6th CS\CourseworkProject" />
       <recent name="C:\Users\arjun\OneDrive\Documents\Lower 6th CS\CourseworkProject\data" />
     </key>
@@ -205,7 +211,10 @@
       <workItem from="1724529642533" duration="4209000" />
       <workItem from="1724574238822" duration="10620000" />
       <workItem from="1724612022318" duration="4711000" />
-      <workItem from="1724673217864" duration="2750000" />
+      <workItem from="1724673217864" duration="11887000" />
+      <workItem from="1724769078188" duration="9230000" />
+      <workItem from="1724783285054" duration="2374000" />
+      <workItem from="1724789156844" duration="3132000" />
     </task>
     <task id="LOCAL-00001" summary="Completed function extractWords for extracting the images of individual words from a page of words. Also included, 2 sample images for testing with.">
       <option name="closed" value="true" />
@@ -247,7 +256,15 @@
       <option name="project" value="LOCAL" />
       <updated>1724615469755</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Added basic input validation for uploading file so it only accepts certain file types but will need to make error mesages visible for user later.">
+      <option name="closed" value="true" />
+      <created>1724676294821</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1724676294821</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -259,12 +276,13 @@
     <MESSAGE value="Combined model with wordSegmentation with inference.py" />
     <MESSAGE value="Made convert text button which outputs the text in the uploaded image" />
     <MESSAGE value="Changed inferencing to the 100 epoch model and added its string lookup table so conversion is more accurate than the 30 epoch model" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed inferencing to the 100 epoch model and added its string lookup table so conversion is more accurate than the 30 epoch model" />
+    <MESSAGE value="Added basic input validation for uploading file so it only accepts certain file types but will need to make error mesages visible for user later." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added basic input validation for uploading file so it only accepts certain file types but will need to make error mesages visible for user later." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/CourseworkProject$inference.coverage" NAME="inference Coverage Results" MODIFIED="1724606848807" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/CourseworkProject$wordSegmentation.coverage" NAME="wordSegmentation Coverage Results" MODIFIED="1724436305466" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/CourseworkProject$test_env.coverage" NAME="test_env Coverage Results" MODIFIED="1724578627835" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/CourseworkProject$main.coverage" NAME="main Coverage Results" MODIFIED="1724675840256" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CourseworkProject$main.coverage" NAME="main Coverage Results" MODIFIED="1724791351776" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

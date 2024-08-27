@@ -1,25 +1,42 @@
-from flask import Flask, render_template, flash
+from flask import Flask, render_template, flash, request, redirect
 from flask_wtf import FlaskForm
 from wtforms import FileField, SubmitField
 from werkzeug.utils import secure_filename
 import os
 from wtforms.validators import InputRequired, ValidationError
 from inference import convert_text
+from wordSegmentation import drawWords
+import cv2
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'secretKey'
-app.config['UPLOAD_FOLDER'] = 'static/files'
+app.config["SECRET_KEY"] = "secretKey"
+app.config["UPLOAD_FOLDER"] = "static/files"
+app.config["ALLOWED_IMAGE_EXTENSIONS"] = ["png", "jpg", "jpeg"]
 
 image_extensions = ['.jpg', '.jpeg', '.png']
 
 class UploadFileForm(FlaskForm):
-    file = FileField("File", validators=[InputRequired()])
+    file = FileField("Upload File", validators=[InputRequired()])
     submit = SubmitField("Convert To Text")
 
 
+def allowed_image_extension(filename):
+    if not "." in filename:
+        return False
+
+    extension = filename.rsplit(".", 1)[1]
+
+    if extension.lower() in app.config["ALLOWED_IMAGE_EXTENSIONS"]:
+        return True
+    else:
+        return False
+
+
+folder_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), app.config['UPLOAD_FOLDER'])
 @app.route('/', methods = ['GET', 'POST'])
 @app.route('/home', methods=['GET', 'POST'])
 def home():
+    """
     form = UploadFileForm()
     output_text = ""
     if form.validate_on_submit():
@@ -37,8 +54,41 @@ def home():
             flash("Invalid file type")
 
     return render_template("home.html", form=form, output_text=output_text)
+    """
+    if os.path.isfile(os.path.join(folder_path, "segmented_image.png")):
+        os.remove(os.path.join(folder_path, "segmented_image.png"))
+
+    if request.method == "POST":
+        if request.files:
+            image = request.files["image"]
+
+            if image.filename == "":
+                print("No image was uploaded")
+                return redirect(request.url)
+
+            if not allowed_image_extension(image.filename):
+                print("Invalid image extension")
+                return redirect(request.url)
+
+
+            file_path = os.path.join(folder_path, secure_filename(image.filename))
+            if os.path.isfile(file_path):
+                os.remove(file_path)
+
+            image.save(file_path)
+
+            output_text = convert_text(file_path, "htr_models/new_htr_model_100epochs.keras")
+            segmented_image = drawWords(file_path)
+            os.remove(file_path)  # To stop files folder clogging up
+
+            cv2.imwrite(os.path.join(folder_path, "segmented_image.png"), segmented_image)
+
+            return render_template("home.html", output_text=output_text, status="Converted")
+
+
+    return render_template("home.html", output_text="", status="Default")
+
 
 
 if __name__ == '__main__':
-    print(os.path.abspath(os.path.dirname(__file__)))
     app.run(debug=True)
