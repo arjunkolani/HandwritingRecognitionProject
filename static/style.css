@@ -19,7 +19,7 @@ input[type="file"]{
 }
 
 label {
-    display: inline-block;
+    display: inline-block; /* Maybe this should be block */
     color: white;
     background: dodgerblue;
     text-align: center;
@@ -61,4 +61,13 @@ figcaption{
 
 .box.right{
     left: 1000px;
+}
+
+#convertButton{
+    display: none;
+}
+
+#convertLabel{
+    position: relative;
+    top: 430px;
 }

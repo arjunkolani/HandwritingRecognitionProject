@@ -17,7 +17,9 @@
             <label for="uploadImage"><i class="fa-solid fa-upload"></i> Upload Image</label>
 
             <button type="submit" id="convertButton">Submit</button>
+            <label for="convertButton" id="convertLabel"> Convert to Text</label>
         </form>
+
         {% if status=="Converted" %}
             <figure class="image-container">
                 <img id="segmented-image" src="{{url_for('static', filename='files/segmented_image.png')}}">
@@ -28,8 +30,8 @@
             <figcaption id="file-name"></figcaption>
         </figure>
 
-
     </div>
+
 
     <div class="box right">
         {{output_text}}
