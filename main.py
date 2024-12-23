@@ -70,17 +70,21 @@ def home():
                 print("Invalid image extension")
                 return redirect(request.url)
 
-
+            # Creates file path to store file
             file_path = os.path.join(folder_path, secure_filename(image.filename))
+            # If file already exists somehow from previous uploading, we delete it
             if os.path.isfile(file_path):
                 os.remove(file_path)
 
+            # Saves our image to the required file path
             image.save(file_path)
 
+            # Predict text using model
             output_text = convert_text(file_path, "htr_models/new_htr_model_100epochs.keras")
+
+            # Get image with boxes drawn around each word and store it in our static folder so it can be displayed
             segmented_image = drawWords(file_path)
             os.remove(file_path)  # To stop files folder clogging up
-
             cv2.imwrite(os.path.join(folder_path, "segmented_image.png"), segmented_image)
 
             return render_template("home.html", output_text=output_text, status="Converted")
