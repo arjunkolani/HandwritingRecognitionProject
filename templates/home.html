@@ -16,7 +16,7 @@
             <input type="file" name="image" id="uploadImage">
             <label for="uploadImage"><i class="fa-solid fa-upload"></i> Upload Image</label>
 
-            <button type="submit" id="convertButton">Submit</button>
+            <button type="submit" id="convertButton" onclick="loading()">Submit</button>
             <label for="convertButton" id="convertLabel"> Convert to Text</label>
         </form>
 
@@ -34,7 +34,12 @@
 
 
     <div class="box right">
-        {{output_text}}
+        <p>{{output_text}}</p>
+        <span class="loadingArea"></span>
+        <span class="loadingArea"></span>
+        <span class="loadingArea"></span>
+        <span class="loadingArea"></span>
+        <p id="waitMessage" class="loadingArea"></p>
     </div>
 
     <script src="{{url_for('static', filename='script.js')}}"></script>
