@@ -11,6 +11,7 @@ import numpy as np
 import tensorflow as tf
 
 from wordSegmentation import extractWords
+from autocorrect import Speller
 
 
 def preprocessImage(image):
@@ -19,7 +20,17 @@ def preprocessImage(image):
         which it was stored in our training datasets to ensure we can pass it into model for prediction.
     """
     img_gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY) # This grayscales image
-    tensor_image = tf.convert_to_tensor(img_gray, dtype=tf.uint8) # Converts numpy array to tensor
+
+    # increase contrast
+    pxmin = np.min(img_gray)
+    pxmax = np.max(img_gray)
+    imgContrast = (img_gray - pxmin) / (pxmax - pxmin) * 255
+    # increase line width
+    kernel1 = np.ones((3, 3), np.uint8)
+    imgMorph = cv2.erode(imgContrast, kernel1, iterations=1)
+
+
+    tensor_image = tf.convert_to_tensor(imgMorph, dtype=tf.uint8) # Converts numpy array to tensor
 
     # This adds an extra dimension to match shape of the tensors in the datasets used in training
     tensor_shape = tf.shape(tensor_image).numpy()
@@ -74,8 +85,10 @@ def convert_text(image_path, model_path):
     preds = pred_model.predict(tensor_images)
     pred_texts = decode_predictions(preds)
 
-    # returns a string with words - elements in the list - spaced out
-    return " ".join(pred_texts)
+    output = " ".join(pred_texts)  # Takes our list of predicted words and combines them with spaces in between
+
+    spell = Speller(lang="en")  # Instantiates our spell-checker object
+    return spell(output)
 
 
 # This is the mapping for the 30 epoch model
