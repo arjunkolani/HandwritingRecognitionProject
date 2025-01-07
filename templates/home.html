@@ -5,13 +5,17 @@
     <title>Home</title>
     <!-- This link is for upload icon -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Open Sans' rel='stylesheet'>
+
     <link href="{{url_for('static', filename='style.css')}}" rel="stylesheet">
 
 </head>
 <body>
-    <h1>Home</h1>
+    <h1>Handwriting Recognition</h1>
 
-    <div class="box">
+    <div class="box left">
         <form method="POST" enctype="multipart/form-data">
             <input type="file" name="image" id="uploadImage">
             <label for="uploadImage"><i class="fa-solid fa-upload"></i> Upload Image</label>
