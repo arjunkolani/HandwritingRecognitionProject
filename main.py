@@ -64,10 +64,12 @@ def home():
 
             if image.filename == "":
                 print("No image was uploaded")
+                flash("No image was uploaded")
                 return redirect(request.url)
 
             if not allowed_image_extension(image.filename):
                 print("Invalid image extension")
+                flash("Invalid image extension")
                 return redirect(request.url)
 
             # Creates file path to store file
