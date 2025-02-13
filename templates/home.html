@@ -19,16 +19,16 @@
     <h1>Handwriting Recognition</h1>
 
     <div class="box left">
-        <form method="POST" enctype="multipart/form-data">
+        <form method="POST" enctype="multipart/form-data" onsubmit="convertButton.disabled = true;">
             <input type="file" name="image" id="uploadImage">
             <label for="uploadImage"><i class="fa-solid fa-upload"></i> Upload Image</label>
 
-            <button type="submit" id="convertButton" onclick="loading()">Submit</button>
+            <button type="submit" id="convertButton" name="convertButton" onclick="loading()"></button>
             <label for="convertButton" id="convertLabel"> Convert to Text</label>
         </form>
 
         {% if status=="Converted" %}
-            <figure class="image-container">
+            <figure class="image-container" id="segmented-image-figure">
                 <img id="segmented-image" src="{{url_for('static', filename='files/segmented_image.png')}}">
             </figure>
         {% endif %}
@@ -52,7 +52,7 @@
     </div>
 
     <div class="box right">
-        <p>{{output_text}}</p>
+        <p id="output-text">{{output_text}}</p>
         <span class="loadingArea"></span>
         <span class="loadingArea"></span>
         <span class="loadingArea"></span>

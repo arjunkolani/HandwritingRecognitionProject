@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e8d9551f-a921-42b6-b098-8184a7295f77" name="Changes" comment="Added documentation/info icon">
+    <list default="true" id="e8d9551f-a921-42b6-b098-8184a7295f77" name="Changes" comment="Added flashed messages of validation of invalid inputs">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/script.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home.html" afterDir="false" />
     </list>
@@ -373,7 +373,7 @@
       <workItem from="1736933009246" duration="4113000" />
       <workItem from="1738940156219" duration="8429000" />
       <workItem from="1739097370465" duration="8279000" />
-      <workItem from="1739296044889" duration="3899000" />
+      <workItem from="1739296044889" duration="18144000" />
     </task>
     <task id="LOCAL-00001" summary="Completed function extractWords for extracting the images of individual words from a page of words. Also included, 2 sample images for testing with.">
       <option name="closed" value="true" />
@@ -487,7 +487,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739129063684</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Added flashed messages of validation of invalid inputs">
+      <option name="closed" value="true" />
+      <created>1739351171222</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1739351171222</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -506,13 +514,14 @@
     <MESSAGE value="Added conversion improvements and spell-checker to main solution" />
     <MESSAGE value="Made general improvements to UI" />
     <MESSAGE value="Added documentation/info icon" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added documentation/info icon" />
+    <MESSAGE value="Added flashed messages of validation of invalid inputs" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added flashed messages of validation of invalid inputs" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/CourseworkProject$test.coverage" NAME="test Coverage Results" MODIFIED="1735926042177" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/CourseworkProject$inference.coverage" NAME="inference Coverage Results" MODIFIED="1724606848807" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/CourseworkProject$wordSegmentation.coverage" NAME="wordSegmentation Coverage Results" MODIFIED="1724436305466" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/CourseworkProject$test_env.coverage" NAME="test_env Coverage Results" MODIFIED="1724578627835" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/CourseworkProject$main.coverage" NAME="main Coverage Results" MODIFIED="1739349880878" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CourseworkProject$main.coverage" NAME="main Coverage Results" MODIFIED="1739386855037" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
