@@ -4,7 +4,7 @@ from wtforms import FileField, SubmitField
 from werkzeug.utils import secure_filename
 import os
 from wtforms.validators import InputRequired, ValidationError
-from inference import convert_text
+from inference import convert_text, spell_correct
 from wordSegmentation import drawWords
 import cv2
 
@@ -84,15 +84,19 @@ def home():
             # Predict text using model
             output_text = convert_text(file_path, "htr_models/new_htr_model_100epochs.keras")
 
+            # Get spell-corrected text
+            spelling_text = spell_correct(output_text)
+
             # Get image with boxes drawn around each word and store it in our static folder so it can be displayed
             segmented_image = drawWords(file_path)
             os.remove(file_path)  # To stop files folder clogging up
             cv2.imwrite(os.path.join(folder_path, "segmented_image.png"), segmented_image)
 
-            return render_template("home.html", output_text=output_text, status="Converted")
+            return render_template("home.html", output_text=output_text, status="Converted",
+                                   spelling_text=spelling_text)
 
 
-    return render_template("home.html", output_text="", status="Default")
+    return render_template("home.html", output_text="", status="Default", spelling_text="")
 
 
 

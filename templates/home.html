@@ -21,10 +21,10 @@
     <div class="box left">
         <form method="POST" enctype="multipart/form-data" onsubmit="convertButton.disabled = true;">
             <input type="file" name="image" id="uploadImage">
-            <label for="uploadImage"><i class="fa-solid fa-upload"></i> Upload Image</label>
+            <label for="uploadImage" class="buttonLabel"><i class="fa-solid fa-upload"></i> Upload Image</label>
 
             <button type="submit" id="convertButton" name="convertButton" onclick="loading()"></button>
-            <label for="convertButton" id="convertLabel"> Convert to Text</label>
+            <label for="convertButton" id="convertLabel" class="buttonLabel"> Convert to Text</label>
         </form>
 
         {% if status=="Converted" %}
@@ -43,7 +43,7 @@
         <div class="icon"><i class="fa fa-info-circle"></i></div>
         <div class="info">
             Upload your image with the upload button and then click "Convert to text" and wait for the text to come up
-            in the box on the right.
+            in the box on the right. Toggle button to apply spell-checker or not.
             <br>
             <br>
             Note: the image can't be lined and the writing needs to be clear (sufficient spacing
@@ -53,11 +53,21 @@
 
     <div class="box right">
         <p id="output-text">{{output_text}}</p>
-        <span class="loadingArea"></span>
-        <span class="loadingArea"></span>
-        <span class="loadingArea"></span>
-        <span class="loadingArea"></span>
-        <p id="waitMessage" class="loadingArea"></p>
+        <p id="spellcheck-output" style="display: none;">{{spelling_text}}</p>
+        <label class="toggle-switch" id="spellcheck-switch">
+            <input type="checkbox" id="spellcheck-input" onclick="spellCheckClicked()"/>
+            <div class="slider"></div>
+        </label>
+        <p id="spellcheck-label">Spell-checker: off</p>
+
+        <div class="loadingArea">
+            <span class="loadingDot"></span>
+            <span class="loadingDot"></span>
+            <span class="loadingDot"></span>
+            <span class="loadingDot"></span>
+            <p id="waitMessage"></p>
+        </div>
+
     </div>
 
     <div class="errorMessages">

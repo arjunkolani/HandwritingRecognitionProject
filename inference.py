@@ -87,8 +87,12 @@ def convert_text(image_path, model_path):
 
     output = " ".join(pred_texts)  # Takes our list of predicted words and combines them with spaces in between
 
+    return output
+
+
+def spell_correct(text):
     spell = Speller(lang="en")  # Instantiates our spell-checker object
-    return spell(output)
+    return spell(text)
 
 
 # This is the mapping for the 30 epoch model
