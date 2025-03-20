@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e8d9551f-a921-42b6-b098-8184a7295f77" name="Changes" comment="Prevented errors and improved validation">
+    <list default="true" id="e8d9551f-a921-42b6-b098-8184a7295f77" name="Changes" comment="Created toggle button to control whether text is spell-checked or not">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inference.py" beforeDir="false" afterPath="$PROJECT_DIR$/inference.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/script.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +57,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/arjun/OneDrive/Documents/Lower 6th CS/CourseworkProject&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/arjun/OneDrive/Documents/Lower 6th CS/CS Classwork&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -375,7 +371,12 @@
       <workItem from="1736933009246" duration="4113000" />
       <workItem from="1738940156219" duration="8429000" />
       <workItem from="1739097370465" duration="8279000" />
-      <workItem from="1739296044889" duration="35456000" />
+      <workItem from="1739296044889" duration="37628000" />
+      <workItem from="1739958720246" duration="761000" />
+      <workItem from="1740563959719" duration="598000" />
+      <workItem from="1741166437529" duration="1895000" />
+      <workItem from="1741610181305" duration="2034000" />
+      <workItem from="1742202692909" duration="2158000" />
     </task>
     <task id="LOCAL-00001" summary="Completed function extractWords for extracting the images of individual words from a page of words. Also included, 2 sample images for testing with.">
       <option name="closed" value="true" />
@@ -505,7 +506,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739464251716</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Created toggle button to control whether text is spell-checked or not">
+      <option name="closed" value="true" />
+      <created>1739631387396</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1739631387398</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -526,13 +535,14 @@
     <MESSAGE value="Added documentation/info icon" />
     <MESSAGE value="Added flashed messages of validation of invalid inputs" />
     <MESSAGE value="Prevented errors and improved validation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Prevented errors and improved validation" />
+    <MESSAGE value="Created toggle button to control whether text is spell-checked or not" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created toggle button to control whether text is spell-checked or not" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/CourseworkProject$test.coverage" NAME="test Coverage Results" MODIFIED="1735926042177" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/CourseworkProject$inference.coverage" NAME="inference Coverage Results" MODIFIED="1724606848807" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/CourseworkProject$wordSegmentation.coverage" NAME="wordSegmentation Coverage Results" MODIFIED="1724436305466" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/CourseworkProject$test_env.coverage" NAME="test_env Coverage Results" MODIFIED="1724578627835" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/CourseworkProject$main.coverage" NAME="main Coverage Results" MODIFIED="1739616166210" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CourseworkProject$main.coverage" NAME="main Coverage Results" MODIFIED="1741618329630" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

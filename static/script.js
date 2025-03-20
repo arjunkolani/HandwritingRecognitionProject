@@ -48,7 +48,7 @@ function loading(){
         dots[i].style.animationDelay = String(0.2 * i).concat("s");
     }
 
-    waitMessage.innerHTML = "Conversion will finish in around 5 seconds";
+    waitMessage.innerHTML = "Conversion will finish in around 10 seconds";
 
 }
 
