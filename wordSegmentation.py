@@ -3,17 +3,19 @@ import numpy as np
 #import matplotlib.pyplot as plt
 
 
-def resizeImage(image):
-    height, width, _ = image.shape  # Gets dimensions of image
+def resizeImage(image: np.ndarray) -> np.ndarray:
     """
-    new_image = image.copy()
-    
-    if width > 1000:
-        new_width = 1000
-        new_height = int((new_width / width) * height) # Maintains original aspect ratio
+        Function resizes image to width 1000, maintaining aspect ratio.
 
-        new_image = cv2.resize(image, (new_width, new_height), interpolation=cv2.INTER_AREA)
+        Parameters:
+        - image (np.ndarray): The input image to resize.
+
+        Returns:
+        - np.ndarray: The resized image.
+
     """
+    height, width, _ = image.shape  # Gets dimensions of image
+
     new_width = 1000
     new_height = int((new_width / width) * height)  # Maintains original aspect ratio
 
@@ -22,16 +24,33 @@ def resizeImage(image):
     return new_image
 
 
-def thresholdImage(image):
+def thresholdImage(image: np.ndarray) -> np.ndarray:
+    """
+        Function thresholds image - turns into binary (black and white).
+
+        Parameters:
+        - image (np.ndarray): The image to threshold.
+
+        Returns:
+        - np.ndarray: The thresholded image.
+
+    """
     img_gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY) # Converts to grayscale image
     # Thresholding turns the image into binary (like black and white)
     _, thresh = cv2.threshold(img_gray, 0, 255, cv2.THRESH_OTSU | cv2.THRESH_BINARY_INV)
     return thresh
 
 
-def extractLines(thresh_image):
+def extractLines(thresh_image: np.ndarray) -> list[np.ndarray]:
     """
-        Function takes a thresholded image as a parameter and returns a list of all the contours of lines
+        Function extracts a list of all the contours of lines from a thresholded image.
+
+        Parameters:
+        - thresh_image (np.ndarray): The thresholded image.
+
+        Returns:
+        - list: A list of all the contours of lines (contour - NumPy array of (x,y) coordinates of boundary points of
+        the line).
     """
     kernel = np.ones((1, 70), np.uint8) # Creates kernel for dilating of (height, width)
     dilated_img = cv2.dilate(thresh_image, kernel, iterations=1) # Creates dilated image using kernel above
@@ -45,9 +64,15 @@ def extractLines(thresh_image):
     return sorted_contours_lines
 
 
-def extractWords(image_path):
+def extractWords(image_path: str) -> list[np.ndarray]:
     """
-        Function takes the file path of an image and returns a list of images (stored as numpy arrays) of all the words
+        Function extracts a list of all the sub-images of words in the image specified by the image path given.
+
+        Parameters:
+        - image_path (str): The file path of the image to get the words extracted from.
+
+        Returns:
+        - list: A list of images (stored as NumPy arrays) of all the individual words in the image of text.
     """
     img = cv2.imread(image_path)  # Reads image from path
     img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)  # Turns into RGB colour space
@@ -59,9 +84,9 @@ def extractWords(image_path):
 
     # Now we dilate to blur only letters in words together
     kernel = np.ones((15, 12), np.uint8)
-    # dilated = cv2.dilate(thresh_img, kernel, iterations=1)
 
     """
+        # Code used in iterative development for visualizing the extractLines() function
         img2 = img.copy()  # Storing a copy to draw our rectangles around each word for visualizing function
     
         for line in lines:
@@ -74,10 +99,13 @@ def extractWords(image_path):
 
 
     #img2 = img.copy()  # Storing a copy to draw our rectangles around each word for visualizing function
-    words = list()
+    words = list() # The list of the images of each word
+
+    # We iterate through each line (which are sorted from top to bottom in the extractLines() function)
+    # Then for each line we have a nested for loop to iterate through the words (sorted from left to right)
     for line in lines:
-        x, y, w, h = cv2.boundingRect(line)
-        line_area = thresh_img[y:y + h, x:x + w]
+        x, y, w, h = cv2.boundingRect(line) # Gets coordinates of line around each rectangle
+        line_area = thresh_img[y:y + h, x:x + w] # Gets that particular line part of the thresholded image
 
         dilated_line = cv2.dilate(line_area, kernel, iterations=1)
         # We find the contours of each word in our image of a dilated line
@@ -87,10 +115,11 @@ def extractWords(image_path):
 
 
         for word in sorted_contours_words:
-
+            # Selection statement makes sure to only include areas big enough to be a word - so we ignore random small dots
             if cv2.contourArea(word) > 300:
                 x2, y2, w2, h2 = cv2.boundingRect(word)
 
+                # We get sub-image of a word
                 word_image = img[y + y2: y + y2 + h2, x + x2: x + x2 + w2]
 
 
@@ -107,11 +136,17 @@ def extractWords(image_path):
     return words
 
 
-def drawWords(image_path):
+def drawWords(image_path: str) -> np.ndarray:
     """
-        Function takes the file path of an image and returns an image with boxes around each word (copy of extractWords
-        function, but we draw boxes around each word with opencv.
+        Function draws rectangles around all the words in the image specified by the image path given.
+
+        Parameters:
+        - image_path (str): The file path of the image to draw boxes around words.
+
+        Returns:
+        - np.ndarray: The image with rectangle boxes around each word.
     """
+    # We use the code from extractWords() function and just keep in our visualizing logic
     img = cv2.imread(image_path)  # Reads image from path
     img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)  # Turns into RGB colour space
 
@@ -122,22 +157,8 @@ def drawWords(image_path):
 
     # Now we dilate to blur only letters in words together
     kernel = np.ones((15, 12), np.uint8)
-    # dilated = cv2.dilate(thresh_img, kernel, iterations=1)
-
-    """
-        img2 = img.copy()  # Storing a copy to draw our rectangles around each word for visualizing function
-    
-        for line in lines:
-            xline, yline, wline, hline = cv2.boundingRect(line)
-            cv2.rectangle(img2, (xline, yline), (xline + wline, yline + hline), (0, 255, 0), 2)
-    
-        plt.imshow(img2)
-        plt.show()
-    """
-
 
     img2 = img.copy()  # Storing a copy to draw our rectangles around each word for visualizing function
-    words = list()
     for line in lines:
         x, y, w, h = cv2.boundingRect(line)
         line_area = thresh_img[y:y + h, x:x + w]
@@ -150,29 +171,20 @@ def drawWords(image_path):
 
 
         for word in sorted_contours_words:
-
             if cv2.contourArea(word) > 300:
                 x2, y2, w2, h2 = cv2.boundingRect(word)
 
-                word_image = img[y + y2: y + y2 + h2, x + x2: x + x2 + w2]
-
-
-                # Adds rectangular image of each word to words list which is returned by the function
-                words.append(word_image)
-
-                # Draws rectangles around words so we can test function during development
-                # Will be commented out after function is tested
+                # Draws rectangles around words
                 cv2.rectangle(img2, (x + x2, y + y2), (x + x2 + w2, y + y2 + h2), (0, 255, 0), 2)
-
-    #plt.imshow(img2)
-    #plt.show()
 
     return img2
 
 
+# Comments below just show some code used for iterative testing and visualisation of the functionality of the above functions
 """
 test_path = "data/sample1.png"
 
+# Plots/shows images of the first 10 extracted words
 extracted_words = extractWords(test_path)
 for extracted_word in extracted_words[:10]:
     plt.imshow(extracted_word)
@@ -180,6 +192,7 @@ for extracted_word in extracted_words[:10]:
 """
 
 """
+# Draws rectangles around each line
 for line in lines:
     x, y, w, h = cv2.boundingRect(line) # Returns info on rough rectangle around the contour of the line
     cv2.rectangle(img, (x, y), (x + w, y + h), (40, 100, 250), 2) # Draws rectangle on image

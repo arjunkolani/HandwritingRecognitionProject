@@ -1,30 +1,33 @@
 from flask import Flask, render_template, flash, request, redirect
-from flask_wtf import FlaskForm
-from wtforms import FileField, SubmitField
 from werkzeug.utils import secure_filename
 import os
-from wtforms.validators import InputRequired, ValidationError
 from inference import convert_text, spell_correct
 from wordSegmentation import drawWords
 import cv2
 
 app = Flask(__name__)
+# Set app configurations
 app.config["SECRET_KEY"] = "secretKey"
 app.config["UPLOAD_FOLDER"] = "static/files"
 app.config["ALLOWED_IMAGE_EXTENSIONS"] = ["png", "jpg", "jpeg"]
 
-image_extensions = ['.jpg', '.jpeg', '.png']
 
-class UploadFileForm(FlaskForm):
-    file = FileField("Upload File", validators=[InputRequired()])
-    submit = SubmitField("Convert To Text")
+def allowed_image_extension(filename: str) -> bool:
+    """
+        Function takes a filename and returns if it is valid for an image file we accept.
 
-
-def allowed_image_extension(filename):
+        Paramaters:
+        - filename (str): The filename to check.
+        
+        Returns:
+        - bool: True if the filename is an image file of an allowed extension, False otherwise.
+    """
     if not "." in filename:
+        # Checks if there's a "." in  filename - required for a valid image ifle
         return False
 
-    extension = filename.rsplit(".", 1)[1]
+    extension = filename.rsplit(".", 1)[1] # Splits into array of text before and after "."
+    # Then we access the second element of the array to get our file extension
 
     if extension.lower() in app.config["ALLOWED_IMAGE_EXTENSIONS"]:
         return True
@@ -32,43 +35,34 @@ def allowed_image_extension(filename):
         return False
 
 
+# Gets path of folder to store images in
 folder_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), app.config['UPLOAD_FOLDER'])
 @app.route('/', methods = ['GET', 'POST'])
 @app.route('/home', methods=['GET', 'POST'])
 def home():
     """
-    form = UploadFileForm()
-    output_text = ""
-    if form.validate_on_submit():
-        file = form.file.data
-        extension = os.path.splitext(file.filename)[1]
-        if extension in image_extensions:
-            file_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), app.config['UPLOAD_FOLDER'],
-                                   secure_filename(file.filename))
-            file.save(file_path)
-
-            output_text = convert_text(file_path, "htr_models/new_htr_model_100epochs.keras")
-            os.remove(file_path) # To stop files folder clogging up
-        else:
-            # Will change later to make it visible to user that they made an error
-            flash("Invalid file type")
-
-    return render_template("home.html", form=form, output_text=output_text)
+        Flask route for home page, accepts GET and POST requests
     """
     if os.path.isfile(os.path.join(folder_path, "segmented_image.png")):
+        # Checks if our word segmented image file exists from a previous conversion
+        # We need to delete it to prevent conflicts when we try to open a different image saved as the same name
+        # Also prevents folder/back-end server from becoming clogged up
         os.remove(os.path.join(folder_path, "segmented_image.png"))
 
     if request.method == "POST":
         if request.files:
+            # Code for post request with a file uploaded
             image = request.files["image"]
 
             if image.filename == "":
-                print("No image was uploaded")
+                # Validation to ensure image is uploaded
+                #print("No image was uploaded")
                 flash("No image was uploaded")
                 return redirect(request.url)
 
             if not allowed_image_extension(image.filename):
-                print("Invalid image extension")
+                # Validation to ensure image is of a valid file type
+                #print("Invalid image extension")
                 flash("Invalid image extension")
                 return redirect(request.url)
 
@@ -90,6 +84,7 @@ def home():
             # Get image with boxes drawn around each word and store it in our static folder so it can be displayed
             segmented_image = drawWords(file_path)
             os.remove(file_path)  # To stop files folder clogging up
+            # Saves segmented image file so that we can display it on web-page after conversion
             cv2.imwrite(os.path.join(folder_path, "segmented_image.png"), segmented_image)
 
             return render_template("home.html", output_text=output_text, status="Converted",
@@ -101,4 +96,4 @@ def home():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run() # Runs our flask application

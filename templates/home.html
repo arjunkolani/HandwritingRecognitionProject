@@ -9,16 +9,20 @@
     <!-- This link is for the info icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+    <!-- These links are for the fonts -->
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Open Sans' rel='stylesheet'>
 
+    <!-- Link for CSS stylesheet -->
     <link href="{{url_for('static', filename='style.css')}}" rel="stylesheet">
 
 </head>
 <body>
     <h1>Handwriting Recognition</h1>
 
+    <!-- Left box -->
     <div class="box left">
+        <!-- Form for uploading and submitting image file -->
         <form method="POST" enctype="multipart/form-data" onsubmit="convertButton.disabled = true;">
             <input type="file" name="image" id="uploadImage">
             <label for="uploadImage" class="buttonLabel"><i class="fa-solid fa-upload"></i> Upload Image</label>
@@ -27,6 +31,7 @@
             <label for="convertButton" id="convertLabel" class="buttonLabel"> Convert to Text</label>
         </form>
 
+        <!-- Jinja if statement used so segmented image only shows when predictions received (not strictly needed) -->
         {% if status=="Converted" %}
             <figure class="image-container" id="segmented-image-figure">
                 <img id="segmented-image" src="{{url_for('static', filename='files/segmented_image.png')}}">
@@ -39,6 +44,7 @@
 
     </div>
 
+    <!-- Div tag for documentation icon -->
     <div class="documentation">
         <div class="icon"><i class="fa fa-info-circle"></i></div>
         <div class="info">
@@ -51,15 +57,19 @@
         </div>
     </div>
 
+    <!-- Right box -->
     <div class="box right">
         <p id="output-text">{{output_text}}</p>
         <p id="spellcheck-output" style="display: none;">{{spelling_text}}</p>
+
+        <!-- Toggle switch element -->
         <label class="toggle-switch" id="spellcheck-switch">
             <input type="checkbox" id="spellcheck-input" onclick="spellCheckClicked()"/>
             <div class="slider"></div>
         </label>
         <p id="spellcheck-label">Spell-checker: off</p>
 
+        <!-- Loading animation and loading time message is here -->
         <div class="loadingArea">
             <span class="loadingDot"></span>
             <span class="loadingDot"></span>
@@ -70,6 +80,7 @@
 
     </div>
 
+    <!-- Message box which is displayed when errors are flashed from validation -->
     <div class="errorMessages">
         {% for message in get_flashed_messages() %}
             <div class="message">

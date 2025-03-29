@@ -14,18 +14,26 @@ from wordSegmentation import extractWords
 from autocorrect import Speller
 
 
-def preprocessImage(image):
+def preprocessImage(image: np.ndarray) -> tf.Tensor:
     """
-        Function takes as a parameter an image stored as a numpy array. We then convert it into the appropriate tensor
-        which it was stored in our training datasets to ensure we can pass it into model for prediction.
+        Function processes image by increasing line contrast and width and transforming into the tensor format required
+        for model prediction.
+
+        Parameters:
+        - image (np.ndarray): The image to be processed and converted to a tensor.
+
+        Returns:
+        - (tf.Tensor): A tensor of the processed image. Also includes transformations made for the images used in the
+        training of the model.
     """
     img_gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY) # This grayscales image
 
-    # increase contrast
+    # increases contrast
     pxmin = np.min(img_gray)
     pxmax = np.max(img_gray)
     imgContrast = (img_gray - pxmin) / (pxmax - pxmin) * 255
-    # increase line width
+
+    # increases line width
     kernel1 = np.ones((3, 3), np.uint8)
     imgMorph = cv2.erode(imgContrast, kernel1, iterations=1)
 
@@ -41,33 +49,48 @@ def preprocessImage(image):
     tensor_image = tf.image.resize_with_pad(tensor_image, 32, 128)
     tensor_image = tf.transpose(tensor_image, perm=[1, 0, 2])
     tensor_image = tf.image.flip_left_right(tensor_image)
-
     tensor_image = tf.cast(tensor_image, tf.float32) / 255.0
+
     return tensor_image
 
 
-def decode_predictions(pred):
+def decode_predictions(pred: np.ndarray) -> list[str]:
     """
-        This takes the numerical predictions of the model and decodes it into text using our num_to_char
+        Function decodes numerical predictions from model into text using CTC decoding and our num_to_char
         mapping defined from the training of the model.
+
+        Parameters:
+        - pred (np.ndarray): A NumPy array of each prediction stored in a numerical vector format.
+
+        Returns:
+        - (list[str]): A list of strings which are the decoded predictions of each word.
+
     """
-    input_len = np.ones(pred.shape[0]) * pred.shape[1]
+    input_len = np.ones(pred.shape[0]) * pred.shape[1] # Gets dimensions of pred array for decode function below
     results = keras.backend.ctc_decode(pred, input_length=input_len, greedy=True)[0][0][
         :, :21
     ]
+    # Number 21 comes from the fact that the maximum length of each label during training was 21
 
     output_text = []
     for res in results:
-        res = tf.gather(res, tf.where(tf.math.not_equal(res, -1)))
+        res = tf.gather(res, tf.where(tf.math.not_equal(res, -1))) # Removes -1s
         res = tf.strings.reduce_join(num_to_char2(res)).numpy().decode("utf-8")
-        output_text.append(res)
+        # Then converts indices to characters using num_to_char mapping
+        output_text.append(res) # Adds each string to list to return
     return output_text
 
 
-def convert_text(image_path, model_path):
+def convert_text(image_path, model_path) -> str:
     """
-        Function takes parameters of the image path and the NN model path. Then it returns an array of the words
-        in the image.
+        Function extracts the text from an image of text using a given neural network model.
+
+        Parameters:
+        - image_path (str): File path of image to extract text from.
+        - model_path (str): File path of neural network model to use to predict text in image.
+
+        Returns:
+        - (str): A string of the text extracted from the image.
     """
     # Gets images of the words from the image using our word segmentation algorithm
     extracted_words = extractWords(image_path)
@@ -90,11 +113,21 @@ def convert_text(image_path, model_path):
     return output
 
 
-def spell_correct(text):
+def spell_correct(text: str) -> str:
+    """
+        Function spell-corrects a piece of text.
+
+        Parameters:
+        - text (str): The text to be spell corrected.
+
+        Returns:
+        - (str): The corrected text.
+    """
     spell = Speller(lang="en")  # Instantiates our spell-checker object
     return spell(text)
 
 
+# Each model had its own num_to_char mapping from training (seeded randomly in training)
 # This is the mapping for the 30 epoch model
 num_to_char = StringLookup(
     vocabulary=['[UNK]',
@@ -184,7 +217,10 @@ num_to_char2 = StringLookup(
     mask_token=None, invert=True
 )
 
+# Comments below just show some code used for iterative testing and visualisation of the functionality of the above functions
 """
+# Code here runs model predictions and then shows a grid with the image of a word and the model's prediction
+# Gives a good visualization of the model's performance - can see image of word and what model predicted it to be
 test_path = "data/sample1.png"
 extracted_words = extractWords(test_path)
 
