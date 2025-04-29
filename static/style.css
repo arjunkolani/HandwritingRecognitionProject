@@ -6,6 +6,7 @@ body{
 }
 
 /* Textboxes on web page */
+
 .box {
     width: 300px;
     height: 500px;
@@ -63,12 +64,14 @@ label i{
     margin-right: 5px;
 }
 
+/* Styling for class that encapsulates the uploaded image and its caption */
 .image-container{
     width: 90%;
     margin: 0 auto 30px auto;
     padding: 10px;
 }
 
+/* Styles the image element in its container */
 .image-container img{
     display: block;
     position: relative;
@@ -90,6 +93,7 @@ figcaption{
     top: 430px;
 }
 
+/* Styling of a dot in the loading animation */
 .loadingDot {
     height: 25px;
     width: 25px;
@@ -122,7 +126,7 @@ figcaption{
     }
 }
 
-/* This is now called in java script (only run on a button press) */
+/* This is now called in java script (only run on a button press) - so removed from CSS*/
 /*
 span:nth-child(1){
     animation-delay: 0s;

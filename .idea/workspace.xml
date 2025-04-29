@@ -4,15 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e8d9551f-a921-42b6-b098-8184a7295f77" name="Changes" comment="Final change - updated wait message">
+    <list default="true" id="e8d9551f-a921-42b6-b098-8184a7295f77" name="Changes" comment="Cleaning up codebase and adding comments">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inference.py" beforeDir="false" afterPath="$PROJECT_DIR$/inference.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/script.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordSegmentation.py" beforeDir="false" afterPath="$PROJECT_DIR$/wordSegmentation.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +68,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/arjun/OneDrive/Documents/Lower 6th CS/CS Classwork&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/arjun/OneDrive/Documents/Lower 6th CS/CourseworkProject&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -399,7 +393,15 @@
       <workItem from="1742643250892" duration="3852000" />
       <workItem from="1742836312132" duration="5391000" />
       <workItem from="1743069170057" duration="2891000" />
-      <workItem from="1743177794911" duration="4050000" />
+      <workItem from="1743177794911" duration="7099000" />
+      <workItem from="1743611762635" duration="5433000" />
+      <workItem from="1744186195839" duration="2061000" />
+      <workItem from="1744748029833" duration="5737000" />
+      <workItem from="1744866643805" duration="1174000" />
+      <workItem from="1745351347470" duration="1356000" />
+      <workItem from="1745485543361" duration="582000" />
+      <workItem from="1745781961303" duration="4774000" />
+      <workItem from="1745924295489" duration="2593000" />
     </task>
     <task id="LOCAL-00001" summary="Completed function extractWords for extracting the images of individual words from a page of words. Also included, 2 sample images for testing with.">
       <option name="closed" value="true" />
@@ -545,7 +547,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742490233271</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Cleaning up codebase and adding comments">
+      <option name="closed" value="true" />
+      <created>1743269761616</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1743269761616</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -568,13 +578,14 @@
     <MESSAGE value="Prevented errors and improved validation" />
     <MESSAGE value="Created toggle button to control whether text is spell-checked or not" />
     <MESSAGE value="Final change - updated wait message" />
-    <option name="LAST_COMMIT_MESSAGE" value="Final change - updated wait message" />
+    <MESSAGE value="Cleaning up codebase and adding comments" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cleaning up codebase and adding comments" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/CourseworkProject$test.coverage" NAME="test Coverage Results" MODIFIED="1735926042177" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/CourseworkProject$inference.coverage" NAME="inference Coverage Results" MODIFIED="1724606848807" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/CourseworkProject$wordSegmentation.coverage" NAME="wordSegmentation Coverage Results" MODIFIED="1724436305466" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/CourseworkProject$test_env.coverage" NAME="test_env Coverage Results" MODIFIED="1724578627835" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/CourseworkProject$main.coverage" NAME="main Coverage Results" MODIFIED="1742644848969" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CourseworkProject$main.coverage" NAME="main Coverage Results" MODIFIED="1745829435334" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
